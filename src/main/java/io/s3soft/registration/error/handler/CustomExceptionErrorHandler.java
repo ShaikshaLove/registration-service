@@ -11,9 +11,10 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import io.s3soft.registration.error.ApiError;
-import io.s3soft.registration.error.ApiSubError;
 import io.s3soft.registration.error.ApiValidationError;
 import io.s3soft.registration.exception.UserDataException;
+
+
 
 /**
  * @author shaiksha
@@ -24,12 +25,12 @@ public class CustomExceptionErrorHandler extends ResponseEntityExceptionHandler 
 	
 	@ExceptionHandler({UserDataException.class})
 	public ResponseEntity<Object> handleBindExceptions(UserDataException ex,WebRequest request){
-		List<ApiSubError> errorMessages=new ArrayList<ApiSubError>();
+		List<ApiValidationError> errorMessages=new ArrayList<ApiValidationError>();
 		for(FieldError error: ex.getErrors().getFieldErrors()) {
 			errorMessages.add(new ApiValidationError(error.getObjectName(),error.getField(),error.getRejectedValue(),error.getDefaultMessage()));
 		}		
 		
-		ApiError apiError=new ApiError(HttpStatus.BAD_REQUEST,ex.getMessage(),errorMessages);		
+		ApiError apiError=new ApiError(HttpStatus.OK,ex.getMessage(),errorMessages);		
 		return new ResponseEntity<Object>(apiError,apiError.getHttpStatus()) ;
 	}
 

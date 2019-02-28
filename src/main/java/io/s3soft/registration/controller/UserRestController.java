@@ -49,7 +49,7 @@ public class UserRestController {
 			User registeredUser=userService.registerNewUserAccount(accountDto);	
 			String appUrl=request.getContextPath();
 			eventPublisher.publishEvent(new OnRegistrationEvent(registeredUser,appUrl));
-			return new ResponseEntity<String>("User Details has been saved "+registeredUser.getUserId(),HttpStatus.CREATED);
+			return new ResponseEntity<Optional<String>>(Optional.of(" A conformation link has been sent to  "+registeredUser.getEmail()+" Valid only for 10 minutes"),HttpStatus.CREATED);
 		}
 	}
 

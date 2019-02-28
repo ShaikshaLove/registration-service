@@ -40,4 +40,13 @@ public class ApiValidationError extends ApiSubError {
 	public ApiValidationError() {
 		super();
 	}
+	public void setRejectedValue(Object rejectedValue) {
+		this.rejectedValue = rejectedValue;
+	}
+	@Override
+	public String toString() {
+		return "ApiValidationError [object=" + object + ", property=" + property + ", rejectedValue=" + rejectedValue
+				+ ", message=" + message + "]";
+	}
+	
 }

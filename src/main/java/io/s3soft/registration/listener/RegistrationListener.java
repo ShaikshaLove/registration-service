@@ -37,7 +37,7 @@ public class RegistrationListener implements ApplicationListener<OnRegistrationE
          
          
          String reciepentAddress=user.getEmail();
-         String subject="Registration Conformation";
+         String subject="S3food.in Registration Conformation";
          String conformationUrl=appUrl+"/users/conformRegistration?token="+token+"&&firstName="+user.getFirstName();
          String message="Click the below link for activating your account ";
          

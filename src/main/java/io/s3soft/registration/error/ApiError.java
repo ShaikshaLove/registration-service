@@ -14,7 +14,7 @@ public class ApiError {
 
 	private HttpStatus  httpStatus;
 	private String message;
-	private List<ApiSubError> errors;
+	private List<ApiValidationError> errors;
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
 	private LocalDateTime timestamp;
 	public HttpStatus getHttpStatus() {
@@ -29,10 +29,11 @@ public class ApiError {
 	public void setMessage(String message) {
 		this.message = message;
 	}
-	public List<ApiSubError> getErrors() {
+	
+	public List<ApiValidationError> getErrors() {
 		return errors;
 	}
-	public void setErrors(List<ApiSubError> errors) {
+	public void setErrors(List<ApiValidationError> errors) {
 		this.errors = errors;
 	}
 	public LocalDateTime getTimestamp() {
@@ -46,16 +47,17 @@ public class ApiError {
 		return "ApiError [httpStatus=" + httpStatus + ", message=" + message + ", errors=" + errors + ", timestamp="
 				+ timestamp + "]";
 	}
-	public ApiError(HttpStatus httpStatus, String message, List<ApiSubError> errors) {
-		super();
-		this.httpStatus = httpStatus;
-		this.message = message;
-		this.errors = errors;
-		timestamp=LocalDateTime.now();
-
-	}
+	
 	public ApiError() {
 		super();
 		timestamp=LocalDateTime.now();
 	}
+	public ApiError(HttpStatus httpStatus, String message, List<ApiValidationError> errors) {
+		super();
+		this.httpStatus = httpStatus;
+		this.message = message;
+		this.errors = errors;
+	}
+	
+	
 }
