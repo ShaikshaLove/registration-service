@@ -44,7 +44,7 @@ public class RegistrationListener implements ApplicationListener<OnRegistrationE
          SimpleMailMessage mailMessage=new SimpleMailMessage();
          mailMessage.setTo(reciepentAddress);
          mailMessage.setSubject(subject);
-         mailMessage.setText(message+" "+"http://localhost:9080"+conformationUrl);
+         mailMessage.setText(message+" "+"http://sa-registration-service-SANDBOX.mymicroapps.net"+conformationUrl);
          sender.send(mailMessage);
          
 	}
