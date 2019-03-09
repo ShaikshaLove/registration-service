@@ -3,6 +3,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -11,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -29,7 +31,6 @@ public class User implements Serializable,Comparable<User>{
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int userId;
-	
 	@Column(name = "enabled")
     private boolean enabled;
 	
@@ -48,7 +49,19 @@ public class User implements Serializable,Comparable<User>{
 	private Date accountCreated;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date modifiedDate;
+	
+	@OneToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+	@JoinColumn(nullable = false, name = "user_id")
+	private VerificationToken verificationToken;
 
+
+	public VerificationToken getVerificationToken() {
+		return verificationToken;
+	}
+
+	public void setVerificationToken(VerificationToken verificationToken) {
+		this.verificationToken = verificationToken;
+	}
 
 	public Date getAccountCreated() {
 		return accountCreated;

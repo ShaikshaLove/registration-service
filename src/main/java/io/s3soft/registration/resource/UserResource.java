@@ -1,4 +1,4 @@
-package io.s3soft.registration.controller;
+package io.s3soft.registration.resource;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
@@ -29,8 +29,8 @@ import io.s3soft.registration.model.VerificationToken;
 import io.s3soft.registration.service.IUserService;
 import io.s3soft.registration.validator.UserDtoValidator;
 @RestController
-@RequestMapping("/users")
-public class UserRestController {
+@RequestMapping("/api/users")
+public class UserResource {
 	@Autowired
 	private UserDtoValidator userDtoValidator;
 	@Autowired

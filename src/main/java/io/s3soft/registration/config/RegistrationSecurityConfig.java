@@ -26,10 +26,7 @@ public class RegistrationSecurityConfig extends WebSecurityConfigurerAdapter {
 	private AuthenticationProvider authProvider() {
 		DaoAuthenticationProvider authProvider=new DaoAuthenticationProvider ();
 		authProvider.setUserDetailsService(userDetailsService);
-		authProvider.setPasswordEncoder(passwordEncoder());
-		
-		
-		
+		authProvider.setPasswordEncoder(passwordEncoder());		
 		return authProvider;
 	}
 	@Override

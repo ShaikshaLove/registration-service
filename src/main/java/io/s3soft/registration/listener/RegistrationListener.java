@@ -39,12 +39,13 @@ public class RegistrationListener implements ApplicationListener<OnRegistrationE
          String reciepentAddress=user.getEmail();
          String subject="S3food.in Registration Conformation";
          String conformationUrl=appUrl+"/users/conformRegistration?token="+token+"&&firstName="+user.getFirstName();
-         String message="Click the below link for activating your account ";
+         String message="Dear, "+user.getFirstName().toUpperCase()+"  "+user.getLastName()+"   "
+         		+ "Please activate your account by clicking this  link ";
          
          SimpleMailMessage mailMessage=new SimpleMailMessage();
          mailMessage.setTo(reciepentAddress);
          mailMessage.setSubject(subject);
-         mailMessage.setText(message+" "+"http://sa-registration-service-SANDBOX.mymicroapps.net"+conformationUrl);
+         mailMessage.setText(message+" "+"https://s3food-users.herokuapp.com"+conformationUrl);
          sender.send(mailMessage);
          
 	}
