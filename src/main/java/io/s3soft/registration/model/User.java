@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -23,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  *
  */
 @Entity
+@Table(name="user_tab")
 public class User implements Serializable,Comparable<User>{
 	/**
 	 * 
@@ -33,7 +35,6 @@ public class User implements Serializable,Comparable<User>{
 	private int userId;
 	@Column(name = "enabled")
     private boolean enabled;
-	
 	@Column(name="firstName")
 	private String firstName;
 	@Column(name="lastName")
@@ -49,6 +50,7 @@ public class User implements Serializable,Comparable<User>{
 	private Date accountCreated;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date modifiedDate;
+	
 	@OneToOne(mappedBy="user",cascade=CascadeType.ALL)
 	@JsonIgnore
 	private VerificationToken verificationToken;
@@ -77,6 +79,9 @@ public class User implements Serializable,Comparable<User>{
 	public void setModifiedDate(Date modifiedDate) {
 		this.modifiedDate = modifiedDate;
 	}
+
+
+
 
 	public List<String> getRoles() {
 		return roles;
@@ -135,16 +140,6 @@ public class User implements Serializable,Comparable<User>{
 		return this.getUserId()-o.getUserId();
 	}
 
-	public User(int userId, String firstName, String lastName, String email, String password, List<String> roles) {
-		super();
-		this.userId = userId;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-		this.password = password;
-		this.roles = roles;
-	}
-
 	public User() {
 		super();
 		this.enabled=false;
@@ -162,8 +157,6 @@ public class User implements Serializable,Comparable<User>{
 	public String toString() {
 		return "User [userId=" + userId + ", enabled=" + enabled + ", firstName=" + firstName + ", lastName=" + lastName
 				+ ", email=" + email + ", password=" + password + ", roles=" + roles + ", accountCreated="
-				+ accountCreated + ", modifiedDate=" + modifiedDate + "]";
-	}
-	
-	
+				+ accountCreated + ", modifiedDate=" + modifiedDate + ", verificationToken=" + verificationToken + "]";
+	}	
 }

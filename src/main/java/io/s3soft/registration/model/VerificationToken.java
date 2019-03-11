@@ -6,15 +6,13 @@ import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 @Entity
-@Table(name="Token_table")
+@Table(name="token_tab")
 public class VerificationToken {
 	private static final int EXPIRATION =10;
     
@@ -23,8 +21,7 @@ public class VerificationToken {
 	private int id;
 	private String token;
 	
-	@OneToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
-	@JoinColumn(name = "user_id_fk")
+	@OneToOne(cascade=CascadeType.ALL)
 	private User user;
 	
 	private Date expiryDate;

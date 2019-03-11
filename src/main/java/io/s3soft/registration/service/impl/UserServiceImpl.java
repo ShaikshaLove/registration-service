@@ -36,6 +36,7 @@ public class UserServiceImpl implements IUserService {
         user.setEmail(accountDto.getEmail());
         user.setAccountCreated(new Date());
         user.setRoles(Arrays.asList("ROLE_USER"));
+  
 		return userRrepo.save(user);
 	}
 
