@@ -29,7 +29,7 @@ import io.s3soft.registration.model.VerificationToken;
 import io.s3soft.registration.service.IUserService;
 import io.s3soft.registration.validator.UserDtoValidator;
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/users")
 public class UserResource {
 	@Autowired
 	private UserDtoValidator userDtoValidator;
@@ -39,7 +39,7 @@ public class UserResource {
 	@Autowired 
 	private ApplicationEventPublisher eventPublisher;
 
-
+	
 	@PostMapping(consumes= {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE})
 	public ResponseEntity<?> registerUserAccount(@RequestBody UserDto accountDto,WebRequest request,BindingResult result)throws UserDataException {
 		userDtoValidator.validate(accountDto, result); 
@@ -85,7 +85,7 @@ public class UserResource {
 		}else {
 		user.setEnabled(true);
 		userService.saveRegisteredUser(user);
-		return new Resource<User>(user);
+		return new Resource<String>("Hurray!!! Your account has been activated");
 		}
 	}
 

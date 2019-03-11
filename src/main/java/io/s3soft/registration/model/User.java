@@ -13,16 +13,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * @author shaiksha
  *
  */
 @Entity
-@Table(name="user_table")
 public class User implements Serializable,Comparable<User>{
 	/**
 	 * 
@@ -49,9 +49,8 @@ public class User implements Serializable,Comparable<User>{
 	private Date accountCreated;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date modifiedDate;
-	
-	@OneToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
-	@JoinColumn(nullable = false, name = "user_id")
+	@OneToOne(mappedBy="user",cascade=CascadeType.ALL)
+	@JsonIgnore
 	private VerificationToken verificationToken;
 
 

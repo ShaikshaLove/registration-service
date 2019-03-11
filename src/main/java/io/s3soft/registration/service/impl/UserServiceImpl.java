@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
+//import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import io.s3soft.registration.model.User;
@@ -34,7 +35,7 @@ public class UserServiceImpl implements IUserService {
         user.setPassword(passwordEncoder.encode(accountDto.getPassword()));
         user.setEmail(accountDto.getEmail());
         user.setAccountCreated(new Date());
-        user.setRoles(Arrays.asList("USER"));
+        user.setRoles(Arrays.asList("ROLE_USER"));
 		return userRrepo.save(user);
 	}
 

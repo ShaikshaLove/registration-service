@@ -39,8 +39,4 @@ public class RegistrationSecurityConfig extends WebSecurityConfigurerAdapter {
       return new BCryptPasswordEncoder();
   }
 
-	/*@Bean
-	public BCryptPasswordEncoder encoder() {
-		return new BCryptPasswordEncoder();
-	}
-*/}
+}

@@ -1,6 +1,5 @@
 package io.s3soft.registration.event;
 
-import java.util.Locale;
 
 import org.springframework.context.ApplicationEvent;
 
